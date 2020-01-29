@@ -12,6 +12,31 @@ from es_db import Elastic_Database, Attachment
 from sql import Sqlite3_db
 from PIL import Image
 
+from discord.ext import menus
+
+
+class MySource(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=1)
+        self.embeds = []
+
+    async def format_page(self, menu, entries):
+        offset = menu.current_page * self.per_page
+
+        print(f'{entries=}')
+        search_phrase = 'test'
+        for fields in [entries]:
+            print(f'{fields=}')
+            embed = Embed.from_dict({
+                'title': f'Search results for \"{search_phrase}\"',
+                'type': 'rich',
+                'fields': [fields],
+                'color': 0x89c6f6
+            })
+            self.embeds.append(embed)
+
+        return self.embeds[offset]
+
 
 # Load config keys
 with open('config.json', 'r') as f:
@@ -65,25 +90,6 @@ async def handle_attachments(message):
     else:
         print(
             f"[BLACKLIST]: channel_id {message.channel.id} in blacklisted channels")
-
-
-def get_embed_fields(search_result):
-    fields = []
-    for i, doc in enumerate(search_result):
-        filename = doc['filename']
-        author = doc['author']
-        url = doc['url']
-        es_id = doc['id']
-        try:
-            message_url = doc['message_url']
-        except KeyError:
-            message_url = ''
-        fields.append({
-            'name': f'{i+1}. {author}',
-            'value': f'[{filename}]({url}) - [jump]({message_url})'
-        })
-
-    return fields
 
 
 def search(phrase, guild_id):
@@ -181,20 +187,44 @@ async def send_message(message, channel):
     await channel.send(message)
 
 
+def get_embed_fields(search_result):
+    fields = []
+    for i, doc in enumerate(search_result):
+        filename = doc['filename']
+        author = doc['author']
+        url = doc['url']
+        es_id = doc['id']
+        try:
+            message_url = doc['message_url']
+        except KeyError:
+            message_url = ''
+        fields.append({
+            'name': f'{i+1}. {author}',
+            'value': f'[{filename}]({url}) - [jump]({message_url})'
+        })
+
+    return fields
+
+
 async def search_command(ctx, args):
     search_phrase = ' '.join(args)
     search_result = search(search_phrase, ctx.guild.id)
 
     fields = get_embed_fields(search_result)
+    # print(f'{fields=}')
 
-    embed = Embed.from_dict({
-        'title': f'Search results for \"{search_phrase}\"',
-        'type': 'rich',
-        'fields': fields,
-        'color': 0x89c6f6
-    })
+    # embed = Embed.from_dict({
+    #     'title': f'Search results for \"{search_phrase}\"',
+    #     'type': 'rich',
+    #     'fields': fields,
+    #     'color': 0x89c6f6
+    # })
 
-    await ctx.send(embed=embed)
+    print(f'{fields=}')
+    pages = menus.MenuPages(source=MySource(
+        fields), clear_reactions_after=True)
+    await pages.start(ctx)
+    # await ctx.send(embed=embed)
 
     return
 
