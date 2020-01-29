@@ -17,25 +17,21 @@ from discord.ext import menus
 
 class MySource(menus.ListPageSource):
     def __init__(self, data):
-        super().__init__(data, per_page=1)
-        self.embeds = []
+        super().__init__(data['fields_data'], per_page=5)
+        self.search_phrase = data['search_phrase']
 
     async def format_page(self, menu, entries):
         offset = menu.current_page * self.per_page
 
-        print(f'{entries=}')
-        search_phrase = 'test'
-        for fields in [entries]:
-            print(f'{fields=}')
-            embed = Embed.from_dict({
-                'title': f'Search results for \"{search_phrase}\"',
-                'type': 'rich',
-                'fields': [fields],
-                'color': 0x89c6f6
-            })
-            self.embeds.append(embed)
+        search_phrase = self.search_phrase
+        embed = Embed.from_dict({
+            'title': f'Search results for \"{search_phrase}\"',
+            'type': 'rich',
+            'fields': entries,
+            'color': 0x89c6f6
+        })
 
-        return self.embeds[offset]
+        return embed
 
 
 # Load config keys
@@ -105,15 +101,13 @@ def search(phrase, guild_id):
                             Q('match', guild_id=guild_id)])
         s = search.query(q)
 
-        res = s.execute()
-
         result = [{
             'filename': h.filename,
             'author': h.author_username,
             'url': h.url,
             'message_url': h.message_url,
             'id': h.meta.id
-        } for h in res]
+        } for h in s.scan()]
 
         return result
     else:
@@ -188,7 +182,8 @@ async def send_message(message, channel):
 
 
 def get_embed_fields(search_result):
-    fields = []
+    fields = {}
+    fields['fields_data'] = []
     for i, doc in enumerate(search_result):
         filename = doc['filename']
         author = doc['author']
@@ -198,7 +193,7 @@ def get_embed_fields(search_result):
             message_url = doc['message_url']
         except KeyError:
             message_url = ''
-        fields.append({
+        fields['fields_data'].append({
             'name': f'{i+1}. {author}',
             'value': f'[{filename}]({url}) - [jump]({message_url})'
         })
@@ -211,20 +206,11 @@ async def search_command(ctx, args):
     search_result = search(search_phrase, ctx.guild.id)
 
     fields = get_embed_fields(search_result)
-    # print(f'{fields=}')
 
-    # embed = Embed.from_dict({
-    #     'title': f'Search results for \"{search_phrase}\"',
-    #     'type': 'rich',
-    #     'fields': fields,
-    #     'color': 0x89c6f6
-    # })
-
-    print(f'{fields=}')
+    fields['search_phrase'] = search_phrase
     pages = menus.MenuPages(source=MySource(
-        fields), clear_reactions_after=True)
+        fields), clear_reactions_after=True, timeout=30)
     await pages.start(ctx)
-    # await ctx.send(embed=embed)
 
     return
 
