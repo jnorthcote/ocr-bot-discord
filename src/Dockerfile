@@ -9,13 +9,6 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 RUN pip install -U git+https://github.com/Rapptz/discord-ext-menus
 
-RUN pip install -U git+https://github.com/Rapptz/discord-ext-menus
-
-<<<<<<< Updated upstream
 COPY ./src .
 
-RUN mkdir sql
-
-=======
->>>>>>> Stashed changes
 CMD [ "python", "-u", "main.py" ]

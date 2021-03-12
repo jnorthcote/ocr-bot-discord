@@ -128,10 +128,9 @@ class Elastic_Database():
 
         res = s.execute()
 
-<<<<<<< Updated upstream
         if len(res.hits) > 0:
             return res.hits[0].message_url
-=======
+
 class Attachment(Document):
     timestamp = Date()
     author_id = Text()
@@ -154,4 +153,3 @@ class TrekScreenShotDoc(Attachment):
     pcom2_name = Text()
     tss_system = Text()
     tss_cargo = Text()
->>>>>>> Stashed changes

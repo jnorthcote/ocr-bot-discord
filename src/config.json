@@ -1,9 +1,5 @@
 {
     "prefix-key": "%",
     "db-connect": true,
-<<<<<<< Updated upstream
-    "index-name": "ocr"
-=======
     "index-name": "stfc_ss"
->>>>>>> Stashed changes
 }
