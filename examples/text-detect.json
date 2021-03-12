@@ -1,0 +1,572 @@
+[locale: "en"
+description: "DEFEAT\n25 [SHYT] TikitusRex\n31 Klingon Fighter\nSTRENGTH\nSTRENGTH\n257,087\n529,540\nVS\n25 VAHKLAS\n01 KLINGON SHIP\n47K\nREWARDS\nMorska - 23m ago\n0/28K\nNO CARGO\nBATTLE LOG\nLOST\n"
+bounding_poly {
+  vertices {
+    x: 42
+    y: 62
+  }
+  vertices {
+    x: 1416
+    y: 62
+  }
+  vertices {
+    x: 1416
+    y: 833
+  }
+  vertices {
+    x: 42
+    y: 833
+  }
+}
+, description: "DEFEAT"
+bounding_poly {
+  vertices {
+    x: 619
+    y: 62
+  }
+  vertices {
+    x: 824
+    y: 62
+  }
+  vertices {
+    x: 824
+    y: 104
+  }
+  vertices {
+    x: 619
+    y: 104
+  }
+}
+, description: "25"
+bounding_poly {
+  vertices {
+    x: 129
+    y: 76
+  }
+  vertices {
+    x: 153
+    y: 76
+  }
+  vertices {
+    x: 153
+    y: 93
+  }
+  vertices {
+    x: 129
+    y: 93
+  }
+}
+, description: "[SHYT]"
+bounding_poly {
+  vertices {
+    x: 162
+    y: 76
+  }
+  vertices {
+    x: 230
+    y: 76
+  }
+  vertices {
+    x: 230
+    y: 96
+  }
+  vertices {
+    x: 162
+    y: 96
+  }
+}
+, description: "TikitusRex"
+bounding_poly {
+  vertices {
+    x: 243
+    y: 77
+  }
+  vertices {
+    x: 341
+    y: 77
+  }
+  vertices {
+    x: 341
+    y: 92
+  }
+  vertices {
+    x: 243
+    y: 92
+  }
+}
+, description: "31"
+bounding_poly {
+  vertices {
+    x: 1246
+    y: 76
+  }
+  vertices {
+    x: 1263
+    y: 76
+  }
+  vertices {
+    x: 1263
+    y: 93
+  }
+  vertices {
+    x: 1246
+    y: 93
+  }
+}
+, description: "Klingon"
+bounding_poly {
+  vertices {
+    x: 1272
+    y: 77
+  }
+  vertices {
+    x: 1341
+    y: 77
+  }
+  vertices {
+    x: 1341
+    y: 96
+  }
+  vertices {
+    x: 1272
+    y: 96
+  }
+}
+, description: "Fighter"
+bounding_poly {
+  vertices {
+    x: 1351
+    y: 77
+  }
+  vertices {
+    x: 1416
+    y: 77
+  }
+  vertices {
+    x: 1416
+    y: 97
+  }
+  vertices {
+    x: 1351
+    y: 97
+  }
+}
+, description: "STRENGTH"
+bounding_poly {
+  vertices {
+    x: 488
+    y: 140
+  }
+  vertices {
+    x: 596
+    y: 139
+  }
+  vertices {
+    x: 596
+    y: 155
+  }
+  vertices {
+    x: 488
+    y: 156
+  }
+}
+, description: "STRENGTH"
+bounding_poly {
+  vertices {
+    x: 845
+    y: 140
+  }
+  vertices {
+    x: 953
+    y: 140
+  }
+  vertices {
+    x: 953
+    y: 156
+  }
+  vertices {
+    x: 845
+    y: 156
+  }
+}
+, description: "257,087"
+bounding_poly {
+  vertices {
+    x: 428
+    y: 163
+  }
+  vertices {
+    x: 597
+    y: 161
+  }
+  vertices {
+    x: 597
+    y: 201
+  }
+  vertices {
+    x: 428
+    y: 203
+  }
+}
+, description: "529,540"
+bounding_poly {
+  vertices {
+    x: 835
+    y: 163
+  }
+  vertices {
+    x: 1017
+    y: 165
+  }
+  vertices {
+    x: 1017
+    y: 205
+  }
+  vertices {
+    x: 835
+    y: 203
+  }
+}
+, description: "VS"
+bounding_poly {
+  vertices {
+    x: 680
+    y: 440
+  }
+  vertices {
+    x: 757
+    y: 440
+  }
+  vertices {
+    x: 757
+    y: 497
+  }
+  vertices {
+    x: 680
+    y: 497
+  }
+}
+, description: "25"
+bounding_poly {
+  vertices {
+    x: 42
+    y: 650
+  }
+  vertices {
+    x: 70
+    y: 650
+  }
+  vertices {
+    x: 70
+    y: 671
+  }
+  vertices {
+    x: 42
+    y: 671
+  }
+}
+, description: "VAHKLAS"
+bounding_poly {
+  vertices {
+    x: 80
+    y: 650
+  }
+  vertices {
+    x: 186
+    y: 650
+  }
+  vertices {
+    x: 186
+    y: 667
+  }
+  vertices {
+    x: 80
+    y: 667
+  }
+}
+, description: "01"
+bounding_poly {
+  vertices {
+    x: 1209
+    y: 647
+  }
+  vertices {
+    x: 1252
+    y: 647
+  }
+  vertices {
+    x: 1252
+    y: 670
+  }
+  vertices {
+    x: 1209
+    y: 670
+  }
+}
+, description: "KLINGON"
+bounding_poly {
+  vertices {
+    x: 1254
+    y: 647
+  }
+  vertices {
+    x: 1344
+    y: 647
+  }
+  vertices {
+    x: 1344
+    y: 671
+  }
+  vertices {
+    x: 1254
+    y: 671
+  }
+}
+, description: "SHIP"
+bounding_poly {
+  vertices {
+    x: 1351
+    y: 650
+  }
+  vertices {
+    x: 1401
+    y: 650
+  }
+  vertices {
+    x: 1401
+    y: 667
+  }
+  vertices {
+    x: 1351
+    y: 667
+  }
+}
+, description: "47K"
+bounding_poly {
+  vertices {
+    x: 1140
+    y: 708
+  }
+  vertices {
+    x: 1175
+    y: 709
+  }
+  vertices {
+    x: 1174
+    y: 725
+  }
+  vertices {
+    x: 1139
+    y: 724
+  }
+}
+, description: "REWARDS"
+bounding_poly {
+  vertices {
+    x: 660
+    y: 751
+  }
+  vertices {
+    x: 778
+    y: 751
+  }
+  vertices {
+    x: 778
+    y: 770
+  }
+  vertices {
+    x: 660
+    y: 770
+  }
+}
+, description: "Morska"
+bounding_poly {
+  vertices {
+    x: 1146
+    y: 760
+  }
+  vertices {
+    x: 1216
+    y: 761
+  }
+  vertices {
+    x: 1216
+    y: 778
+  }
+  vertices {
+    x: 1146
+    y: 777
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 1230
+    y: 771
+  }
+  vertices {
+    x: 1236
+    y: 771
+  }
+  vertices {
+    x: 1236
+    y: 772
+  }
+  vertices {
+    x: 1230
+    y: 772
+  }
+}
+, description: "23m"
+bounding_poly {
+  vertices {
+    x: 1250
+    y: 761
+  }
+  vertices {
+    x: 1291
+    y: 762
+  }
+  vertices {
+    x: 1291
+    y: 778
+  }
+  vertices {
+    x: 1250
+    y: 777
+  }
+}
+, description: "ago"
+bounding_poly {
+  vertices {
+    x: 1300
+    y: 765
+  }
+  vertices {
+    x: 1332
+    y: 766
+  }
+  vertices {
+    x: 1332
+    y: 782
+  }
+  vertices {
+    x: 1300
+    y: 781
+  }
+}
+, description: "0/28K"
+bounding_poly {
+  vertices {
+    x: 70
+    y: 785
+  }
+  vertices {
+    x: 132
+    y: 785
+  }
+  vertices {
+    x: 132
+    y: 801
+  }
+  vertices {
+    x: 70
+    y: 801
+  }
+}
+, description: "NO"
+bounding_poly {
+  vertices {
+    x: 658
+    y: 788
+  }
+  vertices {
+    x: 712
+    y: 788
+  }
+  vertices {
+    x: 712
+    y: 809
+  }
+  vertices {
+    x: 658
+    y: 809
+  }
+}
+, description: "CARGO"
+bounding_poly {
+  vertices {
+    x: 714
+    y: 787
+  }
+  vertices {
+    x: 774
+    y: 787
+  }
+  vertices {
+    x: 774
+    y: 809
+  }
+  vertices {
+    x: 714
+    y: 809
+  }
+}
+, description: "BATTLE"
+bounding_poly {
+  vertices {
+    x: 1137
+    y: 802
+  }
+  vertices {
+    x: 1266
+    y: 802
+  }
+  vertices {
+    x: 1266
+    y: 829
+  }
+  vertices {
+    x: 1137
+    y: 829
+  }
+}
+, description: "LOG"
+bounding_poly {
+  vertices {
+    x: 1278
+    y: 802
+  }
+  vertices {
+    x: 1342
+    y: 802
+  }
+  vertices {
+    x: 1342
+    y: 829
+  }
+  vertices {
+    x: 1278
+    y: 829
+  }
+}
+, description: "LOST"
+bounding_poly {
+  vertices {
+    x: 695
+    y: 817
+  }
+  vertices {
+    x: 745
+    y: 816
+  }
+  vertices {
+    x: 745
+    y: 832
+  }
+  vertices {
+    x: 695
+    y: 833
+  }
+}
+]

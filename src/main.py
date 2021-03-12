@@ -1,4 +1,5 @@
 import logging
+import logging.config
 import json
 import random
 import string
@@ -7,6 +8,7 @@ import aiohttp
 from discord import Game, Status, Webhook, AsyncWebhookAdapter
 from discord.ext import commands
 from lib import *
+from log_config import *
 
 # Load config keys
 with open('config.json', 'r') as f:
@@ -82,6 +84,12 @@ async def handle_search_command(ctx, *args):
     return
 
 
+@bot.command(name='bs')
+async def handle_bs_command(ctx, *args):
+    await bs_command(ctx, args)
+    return
+
+
 @bot.command(name='ignore')
 async def handle_ignorechannel_command(ctx, *args):
     await ignore_command(ctx, args)
@@ -100,13 +108,20 @@ async def handle_link_command(ctx, *args):
     return
 
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger('discord')
-logger.setLevel(logging.ERROR)
-handler = logging.FileHandler(
-    filename='../discord.log', encoding='utf-8', mode='w')
-handler.setFormatter(logging.Formatter(
-    '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(handler)
+@bot.command(name='btag')
+async def handle_btag_command(ctx, *args):
+    await btag_command(ctx, args)
+    return
+
+
+# logging.basicConfig(level=logging.INFO)
+# logging.config.fileConfig('logging.conf')
+# logger = logging.getLogger('ss_process')
+# logger.setLevel(logging.ERROR)
+# handler = logging.FileHandler(
+#     filename='../discord.log', encoding='utf-8', mode='w')
+# handler.setFormatter(logging.Formatter(
+#     '%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+# logger.addHandler(handler)
 
 bot.run(discord_secrets['discord-token'])

@@ -38,11 +38,11 @@ class Elastic_Database():
         """
         i = Index(index_name)
 
-        doc = Attachment()
+        doc = TrekScreenShotDoc()
 
         if not i.exists():
             try:
-                i.document(Attachment)
+                i.document(TrekScreenShotDoc)
                 i.create()
             except Exception as e:
                 print(e)
@@ -128,5 +128,30 @@ class Elastic_Database():
 
         res = s.execute()
 
+<<<<<<< Updated upstream
         if len(res.hits) > 0:
             return res.hits[0].message_url
+=======
+class Attachment(Document):
+    timestamp = Date()
+    author_id = Text()
+    author_username = Text()
+    channel = Text()
+    category_id = Text()
+    guild = Text()
+    guild_id = Text()
+    url = Text()
+    message_url = Text()
+    filename = Text()
+    text = Text(analyzer=standard)
+    hash = Text()
+
+class TrekScreenShotDoc(Attachment):
+    tss_tag = Text()
+    tss_status = Text()
+    tss_status_text = Text()
+    pcom1_name = Text()
+    pcom2_name = Text()
+    tss_system = Text()
+    tss_cargo = Text()
+>>>>>>> Stashed changes

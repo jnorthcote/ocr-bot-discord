@@ -7,3 +7,4 @@ discord.log
 venv/
 kibana.yml
 config.py
+.DS_Store

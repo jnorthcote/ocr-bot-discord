@@ -1,0 +1,142 @@
+{
+  "textAnnotations": [
+    {
+      "description": "22",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 86,
+            "y": 20
+          },
+          {
+            "x": 102,
+            "y": 20
+          },
+          {
+            "x": 102,
+            "y": 32
+          },
+          {
+            "x": 86,
+            "y": 32
+          }
+        ]
+      }
+    },
+    {
+      "description": "[SHYT]",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 108,
+            "y": 20
+          },
+          {
+            "x": 153,
+            "y": 20
+          },
+          {
+            "x": 153,
+            "y": 34
+          },
+          {
+            "x": 108,
+            "y": 34
+          }
+        ]
+      }
+    },
+    {
+      "description": "TeabagTheDbag",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 162,
+            "y": 21
+          },
+          {
+            "x": 266,
+            "y": 21
+          },
+          {
+            "x": 266,
+            "y": 34
+          },
+          {
+            "x": 162,
+            "y": 34
+          }
+        ]
+      }
+    },
+    {
+      "description": "25",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 937,
+            "y": 20
+          },
+          {
+            "x": 954,
+            "y": 20
+          },
+          {
+            "x": 954,
+            "y": 32
+          },
+          {
+            "x": 937,
+            "y": 32
+          }
+        ]
+      }
+    },
+    {
+      "description": "[ODW]",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 960,
+            "y": 20
+          },
+          {
+            "x": 1004,
+            "y": 20
+          },
+          {
+            "x": 1004,
+            "y": 34
+          },
+          {
+            "x": 960,
+            "y": 34
+          }
+        ]
+      }
+    },
+    {
+      "description": "Amerika",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 1013,
+            "y": 21
+          },
+          {
+            "x": 1064,
+            "y": 21
+          },
+          {
+            "x": 1064,
+            "y": 32
+          },
+          {
+            "x": 1013,
+            "y": 32
+          }
+        ]
+      }
+    }
+  ]
+}

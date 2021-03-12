@@ -1,0 +1,28 @@
+{
+  "textAnnotations": [
+    {
+      "locale": "en",
+      "description": "22 [SHYT] TeabagTheDbag\nDEFEAT\n25 [ODW] Amerika\nSTRENGTH\nSTRENGTH\n43,194\n140,189\nVS\n25 ENVOY\n19 NORTH STAR\n73K\n104K\nREWARDS\nRator - 03h 53m ago\n7077/111K\nNO CARGO\nBATTLE LOG\nLOST\n",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 29,
+            "y": 11
+          },
+          {
+            "x": 1064,
+            "y": 11
+          },
+          {
+            "x": 1064,
+            "y": 525
+          },
+          {
+            "x": 29,
+            "y": 525
+          }
+        ]
+      }
+    }
+  ]
+}

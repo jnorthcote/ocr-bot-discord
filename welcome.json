@@ -1,0 +1,9 @@
+{
+  "title": "Welcome",
+  "description": "Please introduce yourself in <#700569713750835291>",
+  "author": {
+    "name": "{user(name)}",
+    "icon_url": "{user(avatar)}"
+  },
+  "color": 9151692
+}

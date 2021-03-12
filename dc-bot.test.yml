@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+    bot: # discord.py bot
+        container_name: ocr-bot-test
+        restart: 'no'
+        volumes:
+          - './src:/usr/src/bot/src'
+#        command: [ "python", "-u", "-X", "dev", "test_ocr_bot.py" ]
+        command: [ "python", "-m", "unittest", "test_ocr_bot.py" ]

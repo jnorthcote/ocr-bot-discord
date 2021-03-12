@@ -1,20 +1,33 @@
+<<<<<<< Updated upstream
 from __future__ import annotations
 
+=======
+import base64
+import filetype
+>>>>>>> Stashed changes
 import io
+import json
 import requests
 import time
+<<<<<<< Updated upstream
 import filetype
 import json
 import re
+=======
+>>>>>>> Stashed changes
 
-from google.cloud import vision
 from elasticsearch_dsl import Search, Document, Index, Text, Long, Q
 from discord import Embed
 from hashlib import md5
-from es_db import Elastic_Database, Attachment
+from es_db import Elastic_Database, Attachment, TrekScreenShotDoc
 from sql import Sqlite3_db
 from discord.ext import menus
+from screen_shot import ScreenShot
+from PIL import Image
+from log_config import *
+from gvis_lib import *
 
+logger = get_logger(__name__)
 
 class MySource(menus.ListPageSource):
     def __init__(self, data):
@@ -48,10 +61,14 @@ db_connect = config['db-connect']
 # TODO - Automatic index management
 index_name = config['index-name']
 
+<<<<<<< Updated upstream
 # Google vision client
 vision_client = vision.ImageAnnotatorClient()
 
 # SQL db for storing blacklisted channels and admins
+=======
+vision_client = vision_v1.ImageAnnotatorClient()
+>>>>>>> Stashed changes
 sql_db = Sqlite3_db()
 
 
@@ -62,13 +79,14 @@ while not connected and db_connect:
         global db
         db = Elastic_Database(index_name)
         connected = True
-        print('[ELASTICSEARCH]: Successfully connected')
+        logger.info('[ELASTICSEARCH]: Successfully connected')
     except Exception as e:
-        print(e)
-        print("[ELASTICSEARCH]: Elasticsearch not available yet, trying again in 10s...")
+        logger.warn(e)
+        logger.warn("[ELASTICSEARCH]: Elasticsearch not available yet, trying again in 10s...")
         time.sleep(10)
 
 
+<<<<<<< Updated upstream
 async def handle_attachments(message: discord.message.Message) -> None:
     """ Process attached image
 
@@ -85,26 +103,90 @@ async def handle_attachments(message: discord.message.Message) -> None:
 
     # Guess the filetype
     kind = filetype.guess(filebytes)
+=======
+async def handle_attachments(message):
+    # url = message.attachments[0].url
+    # attachment = message.attachments[0]
 
-    print(f'[URL]: {url}')
-    print(f'[FILETYPE]: {kind.mime}')
+    # # Get the raw bytes of the attachment
+    # filebytes = await attachment.read()
+    # kind = filetype.guess(filebytes)
+    #
+    # print(f'[URL]: {url}')
+    # print(f'[FILETYPE]: {kind.mime}')
+    #
+    # # Return if it's not an image
+    # if not 'image' in kind.mime:
+    #     return
+    #
+    # # Return if the image is larger than 10MB, this is a limit of Google's OCR API
+    # if attachment.size > 10000000:
+    #     print(f'[INFO]: Image too large, size: {attachment.size}')
+    #     return
 
-    # Return if it's not an image
-    if not 'image' in kind.mime:
+    # if not str(message.channel.id) in sql_db.get_blacklisted_channels(message.guild.id):
+    if str(message.channel.id) in sql_db.get_blacklisted_channels(message.guild.id):
+        for attachment in message.attachments:
+            await process_attachment(attachment, message)
+    else:
+        print(
+            f"[BLACKLIST]: channel_id {message.channel.id} in blacklisted channels")
+
+>>>>>>> Stashed changes
+
+async def process_attachment(attachment, message):
+
+    channel_btag = sql_db.get_btag(message.guild.id, message.channel.id, message.author.id)
+    # print(f'[channel_btag]: {channel_btag}')
+
+    # hash = md5(attachment.url).hexdigest()
+    hash = ""
+    filename = get_filename_from_url(attachment.url)
+    ta_dict = annotate_image_url(attachment.url)
+
+    ss = ScreenShot(ta_dict['textAnnotations'])
+    # ss = None
+    if ss == None:
+        print(f'[INFO]: No text detected in {attachment.url}')
         return
 
-    # Return if the image is larger than 10MB, this is a limit of Google's OCR API
-    if attachment.size > 10000000:
-        print(f'[INFO]: Image too large, size: {attachment.size}')
-        return
-
+<<<<<<< Updated upstream
     # Save the image if it wasn't sent in a blacklisted channel
     if str(message.channel.id) not in sql_db.get_blacklisted_channels(message.guild.id):
         await save_image_text(url, message)
     else:
         print(
             f"[BLACKLIST]: channel_id {message.channel.id} in blacklisted channels")
+=======
+    doc = TrekScreenShotDoc(timestamp=int(time.time()*1000), author_id=int(message.author.id),
+         author_username=message.author.name+"#"+message.author.discriminator,
+         channel=message.channel.name, category_id=message.channel.category_id,
+         guild=message.guild.name, guild_id=message.guild.id,
+         message_url=message.jump_url, url=attachment.url, hash=hash,
+         filename=filename, tss_tag=channel_btag)
 
+    em = ss.to_embed()
+    author = message.author
+    em.set_author(name ="{} - [{}]".format(author,author.id),icon_url=author.avatar_url or author.default_avatar_url)
+
+    # for fType, value in ss.__dict__["fields"].items():
+    #     em.add_field(name=fType.label, value=' '.join(value), inline=True)
+    #     doc[fType.es_field_name]=' '.join(value)
+>>>>>>> Stashed changes
+
+    # if db_connect:
+    #     db.save_attachment(doc, index_name)
+    #     print("[INFO]: Attachment saved")
+    # else:
+    #     print("No db_connect")
+
+    await send_message(None, message.channel, em)
+    return
+
+def get_filename_from_url(url):
+    filename = url[url.rfind("/")+1:]
+
+    return filename
 
 def search(guild_id: str, phrase="", queried_user_id="") -> str:
     """ Return matching results from elasticsearch, based on a search phrase,
@@ -162,6 +244,7 @@ def search(guild_id: str, phrase="", queried_user_id="") -> str:
 
     return result
 
+<<<<<<< Updated upstream
 
 async def save_image_text(url: str, message: discord.message.Message) -> None:
     """ Download the image, check if it already exists in the index, run OCR on the image,
@@ -231,25 +314,36 @@ def get_image_from_url(url: str) -> io.BytesIO:
 
     return image_file
 
+=======
+def bs(phrase, guild_id, btag):
+    if db_connect:
+        if not phrase:
+            print(f'[SEARCH]: Empty search - returning')
+            return
+>>>>>>> Stashed changes
 
-def detect_text(image_file):
-    # Read the bytes of the BytesIO object
-    image = vision.types.Image(content=image_file.read())
+        print(f'[SEARCH]: Searching for {phrase} in ')
 
-    text_detection_response = vision_client.text_detection(image=image)
+        search = Search()
+        q = Q('bool', must=[Q('match', text=phrase),
+                            Q('match', guild_id=guild_id),
+                            Q('match', btag=btag)])
+        s = search.query(q)
 
-    annotations = text_detection_response.text_annotations
+        result = [{
+            'filename': h.filename,
+            'author': h.author_username,
+            'url': h.url,
+            'message_url': h.message_url,
+            'id': h.meta.id
+        } for h in s.scan()]
 
-    if len(annotations) > 0:
-        text = annotations[0].description
+        return result
     else:
-        text = ''
+        return ""
 
-    return text.replace('\n', ' ')
-
-
-async def send_message(message, channel):
-    await channel.send(message)
+async def send_message(message, channel, embed):
+    await channel.send(message, embed=embed)
 
 
 def get_embed_fields(search_result):
@@ -301,6 +395,21 @@ async def search_command(ctx, args):
     return
 
 
+async def bs_command(ctx, args):
+    channel_btag = sql_db.get_btag(ctx.guild.id, ctx.channel.id, ctx.author.id)
+    search_phrase = ' '.join(args)
+    search_result = bs(search_phrase, ctx.guild.id, channel_btag)
+
+    fields = get_embed_fields(search_result)
+
+    fields['search_phrase'] = search_phrase
+    pages = menus.MenuPages(source=MySource(
+        fields), clear_reactions_after=True, timeout=30)
+    await pages.start(ctx)
+
+    return
+
+
 async def ignore_command(ctx, args):
     channel = ctx.message.channel_mentions[0]
     channel_id = str(channel.id)
@@ -337,6 +446,33 @@ async def link_command(ctx, args):
         await ctx.send(f'Document with ID: {es_id} not found.')
 
     return
+
+async def btag_command(ctx, args):
+    channel_id = str(ctx.message.channel.id)
+    guild_id = str(ctx.guild.id)
+    author_id = str(ctx.author.id)
+    tag_name = ' '.join(args)
+
+    if not tag_name:
+        channel_btag = sql_db.get_btag(guild_id, channel_id, author_id)
+        await ctx.send(f"Batch tag for {ctx.author.mention} is: {channel_btag}")
+        return
+
+    guild_admins = sql_db.get_admins(ctx.guild.id)
+    guild_admins.append(discord_secrets['owner-id'])
+    if author_id in guild_admins:
+        # TODO - If able to blacklist by channel if, check if channel is actually in guild before adding to db
+        sql_db.set_channel_author_tag(guild_id, channel_id, author_id, tag_name)
+
+        await ctx.send(f"Batch tag for {ctx.author.mention} set: {tag_name}")
+
+        print(
+            f"[BATCHTAG]: Channel {ctx.message.channel.name} - {tag_name}")
+    # Not admin
+    else:
+        await ctx.send(f'You must be an admin to do that :D')
+        print(
+            f"[BATCHTAG]: Non admin - {author_id} tried to batch tag channel {ctx.message.channel.name} - {channel_id}")
 
 
 async def admin_command(ctx, args):

@@ -1,0 +1,27 @@
+{
+  "textAnnotations": [
+    {
+      "description": "REWARDS",
+      "boundingPoly": {
+        "vertices": [
+          {
+            "x": 499,
+            "y": 472
+          },
+          {
+            "x": 579,
+            "y": 472
+          },
+          {
+            "x": 579,
+            "y": 485
+          },
+          {
+            "x": 499,
+            "y": 485
+          }
+        ]
+      }
+    }
+  ]
+}

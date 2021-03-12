@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+    bot: # discord.py bot
+        container_name: ocr-bot
+        build:
+            context: ./src
+            # dockerfile: Dockerfile2
+        volumes:
+            - botdata:/usr/src/bot/sql/
+        restart: always
+        networks:
+            - bot-network
+        # depends_on:
+        #     - elasticsearch
+        # links:
+        #     - elasticsearch
+        environment:
+            GOOGLE_APPLICATION_CREDENTIALS: "./gcloud_keys.json"
+volumes:
+    botdata:
+
+networks:
+    bot-network:
